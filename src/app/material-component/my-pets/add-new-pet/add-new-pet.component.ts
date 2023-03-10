@@ -7,7 +7,7 @@ import { PetService } from 'src/app/Services/pet.service';
 import { Message } from 'primeng/api';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-
+import { TreatmentService } from 'src/app/Services/treatment.service';
 @Component({
   selector: 'app-dialog-overview-example-dialog',
   template: `
@@ -30,7 +30,7 @@ export class CustomConfirmationDialog {
   constructor(
     public dialogRef: MatDialogRef<CustomConfirmationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any, private petService: PetService, private router: Router
-  ) { }
+    ,private treatmentService:TreatmentService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -46,7 +46,7 @@ export class CustomConfirmationDialog {
         this.data.pet = data;
         this.data.treatments.forEach((treatment: { pet: any; }) => {
           treatment.pet = this.data.pet;
-          this.petService.saveTreatment(treatment).subscribe((response) => {
+          this.treatmentService.saveTreatment(treatment).subscribe((response) => {
             this.data.pet.treatments?.push(response)
             this.petService.updatePetTreatment(this.data.pet).subscribe((response) => {
 

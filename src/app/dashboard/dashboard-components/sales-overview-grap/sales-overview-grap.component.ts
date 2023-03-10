@@ -9,6 +9,7 @@ import {
 } from "ng-apexcharts";
 import { Treatment } from "src/app/Entities/treatments";
 import { PetService } from 'src/app/Services/pet.service';
+import { TreatmentService } from 'src/app/Services/treatment.service';
 export type ChartOptions = {
 	series: ApexAxisChartSeries;
 	chart: ApexChart;
@@ -31,12 +32,12 @@ export class SalesOverviewGrapComponent implements OnInit {
 	treatments: Treatment[] = [];
 
 	ngOnInit() { this.getAllPets() }
-	constructor(private petService: PetService) {
+	constructor(private petService: PetService,private treatmentService:TreatmentService) {
 	}
 
 
 	getAllPets() {
-		this.petService.getAllTreatments().subscribe((data) => {
+		this.treatmentService.getAllTreatments().subscribe((data) => {
 			this.treatments = data;
 			let groupedList = this.groupByType(this.treatments)
 			const result: string[] = [];

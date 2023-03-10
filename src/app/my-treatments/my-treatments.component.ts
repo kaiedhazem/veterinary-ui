@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from 'src/app/Services/pet.service';
+import { TreatmentService } from 'src/app/Services/treatment.service';
 import { Treatment} from "../Entities/treatments"
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -21,13 +21,13 @@ export class MyTreatmentsComponent implements OnInit {
   objectToEdit: any;
   idSupp: any;
   dataSource: MatTableDataSource<any>;
-  constructor(private petService: PetService, private router: Router,public dialog: MatDialog, private formBuilder : FormBuilder,
+  constructor(private treatmentService: TreatmentService, private router: Router,public dialog: MatDialog, private formBuilder : FormBuilder,
     private _snackBar: MatSnackBar) {
 
   }
 
   ngOnInit() {
-    this.petService.getAllTreatments().subscribe((response) => {
+    this.treatmentService.getAllTreatments().subscribe((response) => {
       this.treatment = response
       this.dataSource = response
     })
@@ -74,7 +74,7 @@ export class MyTreatmentsComponent implements OnInit {
   ajouterTreatment(): void {
     console.log(this.ajoutTreatmentForm.value);
     
-      this.petService.saveTreatment(this.ajoutTreatmentForm.value)
+      this.treatmentService.saveTreatment(this.ajoutTreatmentForm.value)
       .subscribe({
         next:(res)=>{
           this.ajoutTreatmentForm.reset();
@@ -95,7 +95,7 @@ export class MyTreatmentsComponent implements OnInit {
     console.log(this.objectToEdit);
     if(this.modifierTreatmentForm.valid)
     {
-      this.petService.updateTreatment(this.modifierTreatmentForm.value)
+      this.treatmentService.updateTreatment(this.modifierTreatmentForm.value)
       .subscribe({
         next:(res)=>{
           this.modifierTreatmentForm.reset();
@@ -114,7 +114,7 @@ export class MyTreatmentsComponent implements OnInit {
   }
 
   supprimerTreatement(){
-    this.petService.deleteTreatmentById(this.idSupp)
+    this.treatmentService.deleteTreatmentById(this.idSupp)
     .subscribe({
       next:(res)=>{
         this.dialog.closeAll();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PetService } from 'src/app/Services/pet.service';
+import { TreatmentService } from 'src/app/Services/treatment.service';
 import { Pets} from "../../Entities/pets"
 import { Treatment} from "../../Entities/treatments"
 
@@ -16,7 +17,7 @@ export class MyPetsComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', "entry", "actions"];
   pets: Pets[] = [];
 
-  constructor(private petService: PetService, private router: Router) {
+  constructor(private petService: PetService, private router: Router,private treatmentService:TreatmentService) {
 
   }
 
@@ -33,7 +34,7 @@ export class MyPetsComponent implements OnInit {
 
   checkAllTreatments() {
     let treatments: Treatment[] = []
-    this.petService.getAllTreatments().subscribe((response) => {
+    this.treatmentService.getAllTreatments().subscribe((response) => {
       treatments = response;
       treatments.forEach(element => {
         // @ts-ignore: Object is possibly 'null'.

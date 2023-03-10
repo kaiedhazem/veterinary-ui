@@ -22,8 +22,7 @@ import {
 } from 'angular-calendar';
 import { Treatment } from 'src/app/Entities/treatments';
 import { PetService } from '../Services/pet.service';
-
-
+import { TreatmentService } from 'src/app/Services/treatment.service';
 
 const colors: any = {
   red: {
@@ -86,7 +85,7 @@ export class MyAppointmentsComponent implements OnInit {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private petService: PetService) { }
+  constructor(private modal: NgbModal, private petService: PetService,private treatmentService:TreatmentService) { }
 
   ngOnInit(): void {
     this.getTreatments();
@@ -140,7 +139,7 @@ export class MyAppointmentsComponent implements OnInit {
   }
 
   getTreatments() {
-    this.petService.getAllTreatments().subscribe((response) => {
+    this.treatmentService.getAllTreatments().subscribe((response) => {
       this.treatments = response;
       this.treatments.forEach(element => {
         // @ts-ignore: Object is possibly 'null'.
