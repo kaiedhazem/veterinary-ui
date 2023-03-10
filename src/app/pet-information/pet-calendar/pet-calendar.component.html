@@ -1,0 +1,61 @@
+<div class="row text-center">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div
+          class="btn btn-primary"
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="activeDayIsOpen = false">
+          Previous
+        </div>
+        <div
+          class="btn btn-outline-secondary"
+          mwlCalendarToday
+          [(viewDate)]="viewDate">
+          Today
+        </div>
+        <div
+          class="btn btn-primary"
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="activeDayIsOpen = false">
+          Next
+        </div>
+      </div>
+    </div>
+ 
+   
+  </div>
+  <br>
+  <div [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="CalendarView.Month"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+      >
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+      *ngSwitchCase="CalendarView.Week"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+      *ngSwitchCase="CalendarView.Day"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)">
+    </mwl-calendar-day-view>
+  </div>
+  
+  <br><br><br>

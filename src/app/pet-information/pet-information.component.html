@@ -1,0 +1,116 @@
+<button class="btn btn-primary btn-block" (click)="exportHtmlToPDF()">Download PDF</button>
+
+<div id="htmltable" #htmltable>
+    <div class="customer-container">
+        <div class="left-container">
+            <mat-card>
+                <mat-card-content>
+                    <mat-card-title>Owner Informations</mat-card-title>
+                    <div class="customer-container">
+                        <div class="left-container">
+                            <mat-form-field>
+                                <input disabled matInput placeholder="First name" value="{{customer?.firstname}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input disabled matInput placeholder="Last name" value="{{customer?.lastname}}">
+                            </mat-form-field>
+                        </div>
+                        <div class="right-container">
+
+                            <mat-form-field>
+                                <input disabled matInput placeholder="Id card" value="{{customer?.idCard}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input disabled matInput placeholder="Phone number" value="{{customer?.phoneNumber}}">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="right-container">
+            <mat-card>
+                <mat-card-content>
+                    <mat-card-title>Pet Informations</mat-card-title>
+                    <div class="customer-container">
+                        <div class="left-container">
+                            <mat-form-field>
+                                <input disabled matInput placeholder="Name" value="{{pet.name}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input disabled matInput placeholder="weight" value="{{pet.weight}}">
+                            </mat-form-field>
+
+                        </div>
+                        <div class="right-container">
+                            <mat-form-field>
+                                <mat-label>Category</mat-label>
+                                <mat-select [(value)]="pet.category" disabled>
+                                    <mat-option *ngFor="let category  of petCategory" [value]="category">{{
+                                        category }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+
+        </div>
+
+    </div>
+    <div class="customer-container">
+        <div class="right-container">
+            <mat-card>
+                <mat-card-content>
+                    <mat-card-title>Treatments</mat-card-title>
+
+                    <div *ngFor="let treatment of treatments; let i = index ">
+                        <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+
+                                    Pet treatment
+
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-form-field>
+                                <input disabled matInput placeholder="Type" value="{{treatment?.type}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input disabled  matInput placeholder="Date" value="{{treatment?.date}}">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input disabled matInput placeholder="Price" value="{{treatment?.price}}">
+                            </mat-form-field>
+                        </mat-expansion-panel>
+                        <br>
+                    </div>
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="right-container">
+            <mat-card>
+                <mat-card-content>
+
+                    <div *ngIf="plannedTreatments.length>0;then notEmpty else empty"></div>
+                    <ng-template #notEmpty>
+                        <app-pet-calendar [plannedTreatment]="plannedTreatments"></app-pet-calendar>
+                    </ng-template>
+                    <ng-template #empty>
+                        <mat-card-title>No Planned Event for this pet</mat-card-title>
+
+                    </ng-template>
+
+
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

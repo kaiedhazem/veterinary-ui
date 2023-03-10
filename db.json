@@ -1,0 +1,182 @@
+{
+  "pets": [
+    {
+      "name": "kikou",
+      "weight": 4,
+      "category": "Cat",
+      "customer": {
+        "firstname": "mondher",
+        "lastname": "menaa",
+        "idCard": "14760128",
+        "phoneNumber": "54969124",
+        "id": 1
+      },
+      "treatments": [
+        {
+          "type": "grooming",
+          "date": "2021-06-07",
+          "price": "15",
+          "pet": {
+            "name": "kikou",
+            "weight": 4,
+            "category": "Cat",
+            "customer": {
+              "firstname": "mondher",
+              "lastname": "menaa",
+              "idCard": "14760128",
+              "phoneNumber": "54969124",
+              "id": 1
+            },
+            "treatments": [],
+            "entryDate": "2021-06-07T12:15:39.299Z",
+            "id": 1
+          },
+          "id": 1
+        },
+        {
+          "type": "flea vaccine",
+          "date": "2021-06-09",
+          "price": "54",
+          "pet": {
+            "name": "kikou",
+            "weight": 4,
+            "category": "Cat",
+            "customer": {
+              "firstname": "mondher",
+              "lastname": "menaa",
+              "idCard": "14760128",
+              "phoneNumber": "54969124",
+              "id": 1
+            },
+            "treatments": [],
+            "entryDate": "2021-06-07T12:15:39.299Z",
+            "id": 1
+          },
+          "id": 2
+        }
+      ],
+      "entryDate": "2021-06-07T12:15:39.299Z",
+      "id": 1
+    },
+    {
+      "name": "spinx",
+      "weight": 3,
+      "category": "Cat",
+      "customer": {
+        "firstname": "balbala",
+        "lastname": "hattab",
+        "idCard": "16656",
+        "phoneNumber": "29929355",
+        "id": 2
+      },
+      "treatments": [
+        {
+          "type": "grooming",
+          "date": "2021-06-07T15:22",
+          "price": "77",
+          "pet": {
+            "name": "spinx",
+            "weight": 3,
+            "category": "Cat",
+            "customer": {
+              "firstname": "balbala",
+              "lastname": "hattab",
+              "idCard": "16656",
+              "phoneNumber": "29929355",
+              "id": 2
+            },
+            "treatments": [],
+            "entryDate": "2021-06-07T12:20:58.353Z",
+            "id": 2
+          },
+          "id": 3
+        }
+      ],
+      "entryDate": "2021-06-07T12:20:58.353Z",
+      "id": 2
+    }
+  ],
+  "owner": [
+    {
+      "firstname": "mondher",
+      "lastname": "menaa",
+      "idCard": "14760128",
+      "phoneNumber": "54969124",
+      "id": 1
+    },
+    {
+      "firstname": "bilel",
+      "lastname": "hattab",
+      "idCard": "16656",
+      "phoneNumber": "29929355",
+      "id": 2
+    }
+
+  ],
+  "treatment": [
+    {
+      "type": "grooming",
+      "date": "2021-06-09",
+      "price": "15",
+      "pet": {
+        "name": "kikou",
+        "weight": 4,
+        "category": "Cat",
+        "customer": {
+          "firstname": "mondher",
+          "lastname": "menaa",
+          "idCard": "14760128",
+          "phoneNumber": "54969124",
+          "id": 1
+        },
+        "treatments": [],
+        "entryDate": "2021-06-07T12:15:39.299Z",
+        "id": 1
+      },
+      "id": 1
+    },
+    {
+      "type": "flea vaccine",
+      "date": "2021-06-09",
+      "price": "54",
+      "pet": {
+        "name": "kikou",
+        "weight": 4,
+        "category": "Cat",
+        "customer": {
+          "firstname": "mondher",
+          "lastname": "menaa",
+          "idCard": "14760128",
+          "phoneNumber": "54969124",
+          "id": 1
+        },
+        "treatments": [],
+        "entryDate": "2021-06-07T12:15:39.299Z",
+        "id": 1
+      },
+      "id": 2
+    },
+    {
+      "type": "grooming",
+      "date": "2021-06-07T15:22",
+      "price": "77",
+      "pet": {
+        "name": "spinx",
+        "weight": 3,
+        "category": "Cat",
+        "customer": {
+          "firstname": "balbala",
+          "lastname": "hattab",
+          "idCard": "16656",
+          "phoneNumber": "29929355",
+          "id": 2
+        },
+        "treatments": [],
+        "entryDate": "2021-06-07T12:20:58.353Z",
+        "id": 2
+      },
+      "id": 3
+    }
+  
+  ]
+}

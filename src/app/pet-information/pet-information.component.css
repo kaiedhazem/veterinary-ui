@@ -1,0 +1,20 @@
+.center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.customer-container {
+    width: 100%;
+    display: flex;
+}
+
+.left-container {
+    width: 50%;
+}
+.right-container {
+    width: 50%;
+}

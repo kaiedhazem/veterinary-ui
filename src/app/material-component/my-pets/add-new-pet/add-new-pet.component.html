@@ -1,0 +1,124 @@
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>Pet Information <span class="bg-success text-white rounded font-12 pl-5 pr-5">New</span>
+        </mat-card-title>
+        <form [formGroup]="petForm">
+
+            <mat-accordion>
+
+                <mat-expansion-panel formGroupName="customer">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Pet owner informations </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <input matInput placeholder="First name *" formControlName="firstname">
+                        <mat-error *ngIf="f.customer.controls.firstname.hasError('required')">
+                            Firstname is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Last name *" formControlName="lastname">
+                        <mat-error *ngIf="f.customer.controls.lastname.hasError('required')">
+                            lastname is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Id card *" formControlName="idCard">
+                        <mat-error *ngIf="f.customer.controls.idCard.hasError('pattern')">
+                            id card must be <strong>a number</strong>
+                        </mat-error>
+                        <mat-error *ngIf="f.customer.controls.idCard.hasError('required')">
+                            id card is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Phone number *" formControlName="phoneNumber">
+                        <mat-error *ngIf="f.customer.controls.phoneNumber.hasError('required')">
+                            phone number is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                    formGroupName="pet">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Pet informations </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-form-field>
+                        <input matInput placeholder="Name *" formControlName="name">
+                        <mat-error *ngIf="f.pet.controls.name.hasError('required')">
+                            Pet name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Category *</mat-label>
+                        <mat-select formControlName="category" required>
+                            <mat-option *ngFor="let category  of petCategory" [value]="category">{{
+                                category }}
+                            </mat-option>
+                            <mat-error *ngIf="f.pet.controls.category.hasError('required')">
+                                Pet category is <strong>required</strong>
+                            </mat-error>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Weight *" formControlName="weight">
+                        <mat-error *ngIf="f.pet.controls.weight.hasError('pattern')">
+                            Pet weight must be <strong>a number</strong>
+                        </mat-error>
+                        <mat-error *ngIf="f.pet.controls.weight.hasError('required')">
+                            Pet weight is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </mat-expansion-panel>
+
+                <br>
+
+                <div formArrayName="treatmentsForm" *ngFor="let item of treatmentFormGroup.controls; let i = index;">
+                    <div [formGroupName]="i">
+
+                        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <p> Pet treatment </p>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <mat-form-field>
+                                <mat-label>Type</mat-label>
+                                <mat-select formControlName="type">
+                                    <mat-option *ngFor="let type  of treatmentType" [value]="type">{{
+                                        type }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Date *" type="datetime-local" formControlName="date">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input matInput placeholder="Price *" formControlName="price">
+                            </mat-form-field>
+                        </mat-expansion-panel>
+                        <button type="button" mat-icon-button color="primary" (click)="removeTreatment(i)">
+                            <mat-icon aria-label="Example icon-button with a heart icon">-</mat-icon>
+                        </button>
+
+                    </div>
+                </div>
+
+                <button type="button" mat-icon-button color="primary" (click)="addNewTreatment()">
+                    <mat-icon aria-label="Example icon-button with a heart icon">+</mat-icon>
+                </button>
+            </mat-accordion>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+
+<mat-card>
+    <mat-card-content>
+
+        <button mat-raised-button (click)="openDialog()">Save</button>
+
+    </mat-card-content>
+</mat-card>

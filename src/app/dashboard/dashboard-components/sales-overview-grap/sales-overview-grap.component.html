@@ -1,0 +1,12 @@
+<h3>All Treatments types</h3>
+
+<div id="chart" *ngIf="initialized">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [dataLabels]="chartOptions.dataLabels"
+      [plotOptions]="chartOptions.plotOptions"
+      [xaxis]="chartOptions.xaxis"
+    ></apx-chart>
+  </div>
+  

@@ -1,0 +1,166 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+	<!-- Card column -->
+	<div fxFlex.gt-sm="100%" fxFlex="100">
+		<mat-card>
+
+			<mat-tab-group mat-align-tabs="center">
+				<mat-tab label="My Treatments">
+                    <mat-form-field appearance="outline" class="filter">
+                        <mat-label>Filter</mat-label>
+                        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                      </mat-form-field>
+                      &nbsp; &nbsp; &nbsp;<button mat-raised-button class="add-btn" aria-label="Example icon-button with share icon" (click)="openDialog(mymodalajout,null)">
+                        Ajouter <mat-icon>library_add</mat-icon>
+                      </button>
+					<div class="demo-tab-content">
+						<div class="custome-table">
+							<table mat-table [dataSource]="treatment" class="mat-elevation-z8">
+								<ng-container matColumnDef="id">
+									<th mat-header-cell *matHeaderCellDef><strong>Id.</strong> </th>
+									<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+								</ng-container>
+
+
+								<ng-container matColumnDef="type">
+									<th mat-header-cell *matHeaderCellDef><strong> Type</strong> </th>
+									<td mat-cell *matCellDef="let element"> {{element.type}} </td>
+								</ng-container>
+
+
+								<ng-container matColumnDef="date">
+									<th mat-header-cell *matHeaderCellDef><strong>Date</strong> </th>
+									<td mat-cell *matCellDef="let element"> {{element.date}} </td>
+								</ng-container>
+
+								<ng-container matColumnDef="status">
+									<th mat-header-cell *matHeaderCellDef><strong>Status</strong> </th>
+									<td mat-cell *matCellDef="let element"> {{element.status}} </td>
+								</ng-container>
+
+								<ng-container matColumnDef="price">
+									<th mat-header-cell *matHeaderCellDef><strong>Price</strong> </th>
+									<td mat-cell *matCellDef="let element"> {{element.price}} </td>
+								</ng-container>
+
+								<ng-container matColumnDef="actions">
+									<th mat-header-cell *matHeaderCellDef><strong>Actions</strong> </th>
+									<td mat-cell *matCellDef="let element"> 
+										<button mat-icon-button color="primary" (click)="showDetails(element.id)">
+											<mat-icon>remove_red_eye</mat-icon>
+										</button>
+                                        <button mat-icon-button color="primary" (click)="openDialog(mymodalmodifier, element)" > <mat-icon>edit</mat-icon> </button>  
+                                        <button mat-icon-button color="warn" (click)="openSuppDialog(mymodalsupprimer,element.id)"> <mat-icon>delete</mat-icon> </button>
+									</td>
+								</ng-container>
+								<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+								<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">Pas de données avec le nom "{{input.value}}"</td>
+                </tr>
+							</table>
+						</div>
+					</div>
+
+
+
+
+				</mat-tab>
+
+			</mat-tab-group>
+
+
+		</mat-card>
+	</div>
+</div>
+   
+<!-------------------------- modal -------------------------------------------------------------------------->
+<ng-template #mymodalajout>
+    <div>
+      <h2 mat-dialog-title>Ajouter Treatment</h2>
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="ajoutTreatmentForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <input formControlName="type" matInput placeholder="Abc" minlength="4">
+            <mat-icon matSuffix>edit</mat-icon>
+            <mat-hint>Min 4 caracteres</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Date</mat-label>
+              <input formControlName="date" matInput placeholder="" minlength="1" >
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-hint>Min 1 caractere</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <input formControlName="status" matInput placeholder="" minlength="3">
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-hint>Min 3 caracteres</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input formControlName="price" matInput placeholder="" minlength="4">
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-hint>Min 4 caracteres</mat-hint>
+            </mat-form-field>
+      </form>
+      </mat-dialog-content>
+    
+      <mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+        <button mat-raised-button color="primary" (click)="ajouterTreatment()" cdkFocusInitial>Creer</button>
+      </mat-dialog-actions>
+    </div>
+    </ng-template>
+    
+    <ng-template #mymodalmodifier>
+    <div>
+      <h2 mat-dialog-title>Modifier treatment</h2>
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="modifierTreatmentForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <input formControlName="type" matInput placeholder="Abc" minlength="4">
+            <mat-icon matSuffix>edit</mat-icon>
+            <mat-hint>Min 4 caracteres</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Date</mat-label>
+              <input formControlName="date" matInput placeholder="" minlength="1" >
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-hint>Min 1 caractere</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <input formControlName="status" matInput placeholder="" minlength="3">
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-hint>Min 3 caracteres</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input formControlName="price" matInput placeholder="" minlength="4">
+              <mat-icon matSuffix>edit</mat-icon>
+              <mat-hint>Min 4 caracteres</mat-hint>
+            </mat-form-field>
+      </form>
+      </mat-dialog-content>
+    
+      <mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+        <button mat-raised-button color="primary" (click)="modifierTreatment()" cdkFocusInitial>Modifier</button>
+      </mat-dialog-actions>
+    </div>
+    </ng-template>
+    
+    <ng-template #mymodalsupprimer>
+    <div>
+      <h2 mat-dialog-title>Supprimer Treatment</h2>
+      <mat-dialog-content class="mat-typography">
+        <h3>Vous voulez vraiment supprimer cet treatment?</h3>
+      </mat-dialog-content>
+    
+      <mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Annuler</button>
+        <button mat-raised-button color="primary" (click)="supprimerTreatement()" cdkFocusInitial>Supprimer</button>
+      </mat-dialog-actions>
+    </div>
