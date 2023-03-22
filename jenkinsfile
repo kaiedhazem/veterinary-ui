@@ -1,6 +1,10 @@
 pipeline {
   agent any
   stages {
+      stage('clone from main') {
+        
+        steps {git branch: 'main', credentialsId:'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'	, url:'https://github.com/kaiedhazem/veterinary-ui.git' }
+     }
     stage('Install') {
       steps { sh 'npm install' }
     }
@@ -20,7 +24,7 @@ pipeline {
       steps { sh 'npm run-script build' }
     }
           stage('build Docker image'){
-        steps { bat 'docker build -t veterinary-ui-image .'}
+        steps { sh 'docker build -t veterinary-ui-image .'}
           }
     }
   }
