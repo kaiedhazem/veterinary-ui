@@ -1,0 +1,32 @@
+pipeline {
+  stages {
+    stage('Git Main Branch'){
+        steps {
+            git credentialsId: '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', url: 'git@github.com:kaiedhazem/veterinary-ui.git' }
+    }
+    stage('Install') {
+      steps { sh 'npm install' }
+    }
+
+    stage('Test') {
+      parallel {
+        stage('Static code analysis') {
+            steps { sh 'npm run-script lint' }
+        }
+        stage('Unit tests') {
+            steps { sh 'npm run-script test' }
+        }
+      }
+    }
+
+    stage('Build') {
+      steps { sh 'npm run-script build' }
+    }
+          stage('build Docker image'){
+        steps { bat 'docker build -t veterinary-ui-image .'}
+          }
+    }
+  }
+
+
+
