@@ -1,9 +1,6 @@
 pipeline {
+  agent any
   stages {
-    stage('Git Main Branch'){
-        steps {
-            git credentialsId: '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', url: 'git@github.com:kaiedhazem/veterinary-ui.git' }
-    }
     stage('Install') {
       steps { sh 'npm install' }
     }
