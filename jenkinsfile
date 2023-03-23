@@ -31,3 +31,20 @@ pipeline {
 
 
 
+/*
+pipeline {
+  agent any
+  stages {
+     stage('clone from main') {
+        steps {git branch: 'main', credentialsId:'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'	, url:'https://github.com/kaiedhazem/veterinary-ui.git' }
+     }
+     stage('build Docker image'){
+        steps { sh 'docker build -t veterinary-ui-image .'}
+     }
+     
+     stage('Run Docker container'){
+        steps { sh 'docker run -d -p 4200:80 veterinary-ui-image'}
+     }
+    }
+  }
+*/
