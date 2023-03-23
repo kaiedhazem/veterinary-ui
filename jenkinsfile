@@ -23,7 +23,7 @@ pipeline {
     stage('Build') {
       steps { sh 'npm run-script build' }
     }
-          stage('build Docker image'){
+          stage('build Docker imageee'){
         steps { sh 'docker build -t veterinary-ui-image .'}
           }
     }
